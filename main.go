@@ -40,19 +40,20 @@ func main() {
 
 	fmt.Println("Successfully connected!")
 
-	content, err := os.Open("teste.txt")
+	content, err := os.Open("base_teste.txt")
 	checkErr(err)
 
 	createStatement := `
-	CREATE TABLE IF NOT EXISTS tbUsers (
+	DROP TABLE IF EXISTS tbUsers;
+	CREATE TABLE tbUsers (
 		cpf VARCHAR(16) NOT NULL PRIMARY KEY,
 		private VARCHAR(16),
 		incompleto VARCHAR(16),
 		data_ultima_compra VARCHAR(16),
 		ticket_medio VARCHAR(16),
 		ticket_ultima_compra VARCHAR(16),
-		loja_mais_frequente VARCHAR(16),
-		loja_da_ultima_compra VARCHAR(16)
+		loja_mais_frequente VARCHAR(18),
+		loja_da_ultima_compra VARCHAR(18)
 	)`
 	_, err = db.Exec(createStatement)
 	checkErr(err)
